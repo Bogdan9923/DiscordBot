@@ -2,7 +2,9 @@ import discord
 
 client = discord.Client(intents=discord.Intents.all())
 
-SpecialKey = 'MTAyNzcwOTk5NDk0ODM4Mjc1MA.Gwf79N.lSjBUucTEliIxWAzr2HA8NDgH1G2VkUHUyM0YM'
+f = open('Token.txt','r')
+
+LOGIN_TOKEN = f.readline()
 
 @client.event
 async def on_ready():
@@ -15,4 +17,4 @@ async def on_message(msg):
     channel = str(msg.channel.name)
     print(f'{username}: {user_msg} ({channel})')
 
-client.run(SpecialKey)
+client.run(LOGIN_TOKEN)
