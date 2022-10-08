@@ -1,5 +1,5 @@
 from command_list_and_description import commandDescriptionDict
-
+from return_code_dict import returnCodeDict
 def help(argument):
 
     if not argument:
@@ -11,15 +11,15 @@ def help(argument):
             help_text = commandDescriptionDict.get(''.join(argument))
         else:
             help_text = 'Command does not exist yet!'
-    return help_text
+    return help_text, returnCodeDict['text']
 
 
 def say(argument):
     text = ' '.join(argument)
-    return text
+    return text, returnCodeDict['text']
 
 
 def welcome(argument):
     text = 'Hello ' + ' '.join(argument) + ', welcome to the chat!'
-    return text
+    return text, returnCodeDict['text']
 

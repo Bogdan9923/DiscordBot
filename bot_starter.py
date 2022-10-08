@@ -1,5 +1,6 @@
 import discord
 from command_parser import parseCommand
+from return_code_dict import returnCodeDict
 
 def startBot():
 
@@ -26,8 +27,11 @@ def startBot():
         if msg.content.startswith('>'):  #check if the message is a command for the bot. Commands start with '>'
             try:
 
-                val = parseCommand(msg)
-                await msg.channel.send(val)
+                content, code = parseCommand(msg)
+                if code == returnCodeDict['text']:
+                    await msg.channel.send(content)
+                if code == returnCodeDict['image']:
+                    await msg.channel.send(file=discord.File(content))
 
             except Exception as e:
                 print(e)
