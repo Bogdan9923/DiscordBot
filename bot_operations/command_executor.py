@@ -1,4 +1,4 @@
-import general_text_responses as GeneralTextResponses
+from commands.general import general_text_responses as GeneralTextResponses
 
 commandDict = {
     'help': GeneralTextResponses.help,

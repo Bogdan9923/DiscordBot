@@ -1,4 +1,4 @@
-from return_code_dict import returnCodeDict
+from data.return_code_dict import returnCodeDict
 from bs4 import BeautifulSoup
 import requests
 

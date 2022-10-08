@@ -1,4 +1,4 @@
-from command_executor import executeCommand
+from bot_operations.command_executor import executeCommand
 def parseCommand(message):
 
     command = message.content[1:].split(' ')[0]

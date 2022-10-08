@@ -1,9 +1,9 @@
-from bot_operations.bot_starter import bot5
+
 from data.command_list_and_description import commandDescriptionDict
+from discord.ext import commands
 
-
-@bot5.command()
-async def help(context, argument):
+@commands.command()
+async def help_me(context, argument):
     if not argument:
         help_text = 'This is the help page. To access commands use ">" in' \
                     ' front of the names.\nList of available commands:\n{} \nTo find ' \
@@ -17,13 +17,16 @@ async def help(context, argument):
     # return help_text, returnCodeDict['text']
     await context.send(help_text)
 
-@bot5.command()
-def say(context, argument):
+@commands.command()
+async def say(context, *argument):
     text = ' '.join(argument)
     # return text, returnCodeDict['text']
-    context.send(text)
+    await context.send(text)
 
-@bot5.command()
-def welcome(context, argument):
+@commands.command()
+async def welcomess(context, argument):
     text = 'Hello ' + ' '.join(argument) + ', welcome to the chat!'
-    context.send(text)
+    await context.send(text)
+
+async def setup(bot):
+    bot.add_command(say)
