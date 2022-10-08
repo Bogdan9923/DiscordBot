@@ -5,7 +5,7 @@ def startBot():
 
     client = discord.Client(intents=discord.Intents.all())
 
-    f = open('Token.txt','r')
+    f = open('Token.txt', 'r')
 
     LOGIN_TOKEN = f.readline()
 
