@@ -1,21 +1,41 @@
 from return_code_dict import returnCodeDict
 from bs4 import BeautifulSoup
 import requests
+from PIL import Image
+import random
 
+saved_image_name = 'downloaded_image.jpg'
 def get_google_img(query):
 
     url = "https://www.google.com/search?q=" + str(query) + "&source=lnms&tbm=isch"
-    headers={'User-Agent': "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36"
-                          " (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36"}
 
-    html = requests.get(url, headers=headers).text
+    html = requests.get(url)
 
-    soup = BeautifulSoup(html, 'html.parser')
-    image = soup.find("img", {"class": "t0fcAb"})
+    soup = BeautifulSoup(html.content, 'html.parser')
 
-    if not image:
-        return
-    return image['src']
+    all_images = soup.findAll('img')
+
+    image_src = None
+
+    rand_idx = random.randint(0, len(all_images))
+
+
+    while not 'https:' in all_images[rand_idx]['src']:
+        rand_idx = random.randint(0, len(all_images))
+    else:
+        image_src = all_images[rand_idx]['src']
+
+
+    im = Image.open(requests.get(image_src, stream=True).raw)
+
+    im = im.convert('RGB')
+
+    im.save(saved_image_name)
+
+    if not image_src:
+        return 'default_image.jpg'
+
+    return saved_image_name
 
 def getImageOf(argument):
 
@@ -24,4 +44,4 @@ def getImageOf(argument):
     else:
         image = get_google_img(''.join(argument))
 
-    return image, returnCodeDict['image']
+    return image, returnCodeDict['file']

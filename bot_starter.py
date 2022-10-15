@@ -32,8 +32,9 @@ def startBot():
                 content, code = parseCommand(msg)
                 if code == returnCodeDict['text']:
                     await msg.channel.send(content)
-                if code == returnCodeDict['image']:
+                if code == returnCodeDict['file']:
                     await msg.channel.send(file=discord.File(content))
+
 
             except Exception as e:
                 print(e)
