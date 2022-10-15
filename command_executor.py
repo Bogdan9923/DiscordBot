@@ -7,7 +7,9 @@ commandDict = {
     'help': GeneralTextResponses.help,
     'welcome': GeneralTextResponses.welcome,
     'say': GeneralTextResponses.say,
+    'choose': GeneralTextResponses.choose,
     'get_image': GeneralImageResponses.getImageOf,
+
 
     }
 

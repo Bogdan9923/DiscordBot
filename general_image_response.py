@@ -17,7 +17,7 @@ def get_google_img(query):
 
     image_src = None
 
-    rand_idx = random.randint(0, len(all_images))
+    rand_idx = random.randint(0, len(all_images)-1)
 
 
     while not 'https:' in all_images[rand_idx]['src']:

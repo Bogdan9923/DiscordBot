@@ -26,12 +26,14 @@ def startBot():
         user_msg = str(msg.content)
         channel = str(msg.channel.name)
 
+
+
         if msg.content.startswith('>'):  #check if the message is a command for the bot. Commands start with '>'
             try:
 
                 content, code = parseCommand(msg)
                 if code == returnCodeDict['text']:
-                    await msg.channel.send(content)
+                    await msg.channel.send(embed = content)
                 if code == returnCodeDict['file']:
                     await msg.channel.send(file=discord.File(content))
 
