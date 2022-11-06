@@ -1,4 +1,4 @@
 returnCodeDict = {
     'text': 0,
-    'file': 1,
+    'link': 1,
 }

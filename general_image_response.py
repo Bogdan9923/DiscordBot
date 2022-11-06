@@ -1,47 +1,39 @@
 from return_code_dict import returnCodeDict
 from bs4 import BeautifulSoup
 import requests
-from PIL import Image
 import random
+import json
+import Constants
 
-saved_image_name = 'downloaded_image.jpg'
+
+
 def get_google_img(query):
+    url = "https://www.bing.com/images/search?q=" + str(query)
+    header = {
+        'User-Agent': "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36"}
+    html = requests.get(url, headers=header)
 
-    url = "https://www.google.com/search?q=" + str(query) + "&source=lnms&tbm=isch"
+    soup = BeautifulSoup(html.text, 'html.parser')
+    a_class = "iusc"
+    all_images = soup.findAll('a', class_=a_class)
 
-    html = requests.get(url)
-
-    soup = BeautifulSoup(html.content, 'html.parser')
-
-    all_images = soup.findAll('img')
-
-    image_src = None
-
-    rand_idx = random.randint(0, len(all_images))
-
-
-    while not 'https:' in all_images[rand_idx]['src']:
-        rand_idx = random.randint(0, len(all_images))
-    else:
-        image_src = all_images[rand_idx]['src']
+    numberof_img = len(all_images)
+    img_idx = random.randrange(numberof_img)
+    selected_img = all_images[img_idx]
+    image_src = json.loads(selected_img['m'])['murl']
 
 
-    im = Image.open(requests.get(image_src, stream=True).raw)
-
-    im = im.convert('RGB')
-
-    im.save(saved_image_name)
 
     if not image_src:
-        return 'default_image.jpg'
+        return Constants.constant_url_default_image
 
-    return saved_image_name
+    return image_src
+
 
 def getImageOf(argument):
-
     if not argument:
-        image = 'default_image.jpg'
+        image = Constants.constant_url_default_image
     else:
         image = get_google_img(''.join(argument))
 
-    return image, returnCodeDict['file']
+    return image, returnCodeDict['link']
