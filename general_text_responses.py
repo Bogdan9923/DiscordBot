@@ -5,7 +5,7 @@ import discord
 from Constants import *
 from command_list_and_description import commandDescriptionDict
 from return_code_dict import returnCodeDict
-
+from openAI_chat import query_response
 
 def help(argument):
     if not argument:
@@ -46,4 +46,14 @@ def choose(argument):
         random_idx = random.randint(0, len(argument) - 1)
         text = 'I think "{}" is the way to go.'.format(argument[random_idx])
         embed = discord.Embed(title=str_choose_title, description=text, color=embed_color)
+    return embed, returnCodeDict['text']
+
+
+def askai(argument):
+    if not argument:
+        text = 'Maybe you forgot your words. Try again.'
+        embed = discord.Embed(title='Oops', description=text, color=embed_color)
+    else:
+        response = query_response(argument)
+        embed = discord.Embed(title=str_aichat_title, description=response, color=embed_color)
     return embed, returnCodeDict['text']

@@ -8,5 +8,6 @@ commandDescriptionDict = {
               'about more important stuff.\n','Usage: >choose item1 item2 item3 etc.'],
     'get_image': ['This command fetches you a nice little picture of whatever you need right now.\n','Usage: >get_image '
                  'puppies'],
+    'askai': ['With this you have access to the most advanced AI available to aks it anything you want.\n','Usage: >askai prompt'],
 
 }

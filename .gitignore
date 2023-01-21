@@ -3,3 +3,4 @@
 /__pycache__
 /.idea/DiscordBot.iml
 /downloaded_image.jpg
+/openai_secret_manager.py
