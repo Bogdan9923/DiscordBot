@@ -11,7 +11,7 @@ commandDict = {
     'say': GeneralTextResponses.say,
     'choose': GeneralTextResponses.choose,
     'get_image': GeneralImageResponses.getImageOf,
-
+    'askai': GeneralTextResponses.askai,
 
     }
 
