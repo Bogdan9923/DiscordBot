@@ -9,5 +9,6 @@ commandDescriptionDict = {
     'get_image': ['This command fetches you a nice little picture of whatever you need right now.\n','Usage: >get_image '
                  'puppies'],
     'askai': ['With this you have access to the most advanced AI available to aks it anything you want.\n','Usage: >askai prompt'],
-
+    'create': ["You don't have drawing talent? No problem, you don't have to start a war, you can just ask an AI to "
+               "create a picture for you.\n",'Usage: >create prompt'],
 }

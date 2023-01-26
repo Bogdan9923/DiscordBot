@@ -12,7 +12,7 @@ commandDict = {
     'choose': GeneralTextResponses.choose,
     'get_image': GeneralImageResponses.getImageOf,
     'askai': GeneralTextResponses.askai,
-
+    'create': GeneralImageResponses.create_ai_image,
     }
 
 

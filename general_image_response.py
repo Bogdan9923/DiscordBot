@@ -4,6 +4,7 @@ import requests
 import random
 import json
 import Constants
+from openAI_image import image_response
 
 
 def get_google_img(query):
@@ -36,3 +37,7 @@ def getImageOf(argument):
         image = get_google_img(''.join(argument))
 
     return image, returnCodeDict['link']
+
+
+def create_ai_image(argument):
+    return image_response(argument), returnCodeDict['link']
