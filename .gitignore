@@ -4,3 +4,4 @@
 /.idea/DiscordBot.iml
 /downloaded_image.jpg
 /openai_secret_manager.py
+/projectSecrets.py
