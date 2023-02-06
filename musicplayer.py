@@ -39,8 +39,8 @@ class MusicPlayer(commands.Cog):
 
             # remove the first element as you are currently playing it
             self.music_queue.pop(0)
+            self.vc.play(discord.FFmpegOpusAudio(m_url, **self.FFMPEG_OPTIONS), after=lambda e: self.play_next())
 
-            self.vc.play(discord.FFmpegPCMAudio(m_url, **self.FFMPEG_OPTIONS), after=lambda e: self.play_next())
         else:
             self.is_playing = False
 
@@ -64,8 +64,9 @@ class MusicPlayer(commands.Cog):
 
             # remove the first element as you are currently playing it
             self.music_queue.pop(0)
+            aux = discord.FFmpegOpusAudio(m_url, **self.FFMPEG_OPTIONS)
+            self.vc.play(aux, after=lambda e: self.play_next())
 
-            self.vc.play(discord.FFmpegPCMAudio(m_url, **self.FFMPEG_OPTIONS), after=lambda e: self.play_next())
         else:
             self.is_playing = False
 
@@ -73,19 +74,18 @@ class MusicPlayer(commands.Cog):
     async def play(self, ctx, *args):
         query = " ".join(args)
 
-        voice_channel = ctx.author.voice.channel
-        if voice_channel is None:
-            # you need to be connected so that the bot knows where to go
-            await ctx.send("Connect to a voice channel!")
+        if not ctx.author.voice:
+            print("ERROR! User not in a voice chat. At music player")
+            await ctx.send("Connect to a voice channel first!")
         elif self.is_paused:
             self.vc.resume()
         else:
+            voice_channel = ctx.author.voice.channel
             song = self.search_yt(query)
             if type(song) == type(True):
-                await ctx.send(
-                    "Could not download the song. Incorrect format try another keyword. This could be due to playlist or a livestream format.")
+                await ctx.send("Could not play that song format. Try again please.")
             else:
-                await ctx.send("Song added to the queue")
+                await ctx.send('"{}" added to the queue'.format(query))
                 self.music_queue.append([song, voice_channel])
 
                 if not self.is_playing:
