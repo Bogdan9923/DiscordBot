@@ -1,10 +1,8 @@
-from return_code_dict import returnCodeDict
 from bs4 import BeautifulSoup
 import requests
 import random
 import json
-import Constants
-from openAI_image import image_response
+import constants
 
 
 def get_google_img(query):
@@ -30,14 +28,11 @@ def get_google_img(query):
     return image_src
 
 
-def getImageOf(argument):
+def search_online_image(argument):
     if not argument:
         image = Constants.constant_url_default_image
     else:
         image = get_google_img(''.join(argument))
 
-    return image, returnCodeDict['link']
+    return image
 
-
-def create_ai_image(argument):
-    return image_response(argument), returnCodeDict['link']

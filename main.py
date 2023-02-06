@@ -1,6 +1,6 @@
-from bot_starter import startBot
+from bot_manager import start_bot
 
-startBot()
+start_bot()
 
 
 

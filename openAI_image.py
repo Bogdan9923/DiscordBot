@@ -1,11 +1,11 @@
-from openai_secret_manager import get_api_key
+from projectSecrets import get_openai_key
 import openai
 
 
 def image_response(argument):
     prompt = ' '.join(argument)
 
-    api_key = get_api_key()
+    api_key = get_openai_key()
     openai.api_key = api_key
     response = openai.Image.create(
         prompt=prompt,
