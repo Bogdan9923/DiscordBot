@@ -21,31 +21,29 @@ def start_bot():
     async def hello(ctx):
         await ctx.send(bc.hello())
 
-    @bot.command(brief=command_dict['say']['brief'], description=command_dict['say']['desc'])
-    async def say(ctx, *, text: str = commands.parameter(default="my name", description="Text to be said")):
+    @bot.command(brief=command_dict['say']['brief'], description=command_dict['say']['desc'], default="my name")
+    async def say(ctx, *, text: str = "my name"):
         embed = discord.Embed(title=command_dict['say']['title'], description=bc.say(text), color=const.embed_color)
         await ctx.send(embed=embed)
 
     @bot.command(brief=command_dict['welcome']['brief'], description=command_dict['welcome']['desc'])
-    async def welcome(ctx, *, text: str = commands.parameter(default="everyone", description="Person to be welcomed")):
+    async def welcome(ctx, *, text: str = "everyone"):
         await ctx.send(bc.welcome(text))
 
     @bot.command(brief=command_dict['choose']['brief'], description=command_dict['choose']['desc'])
-    async def choose(ctx, *, items: str = commands.parameter(default="You have no choice", description="list of items")):
+    async def choose(ctx, *, items: str = "You have no choice"):
         await ctx.send(bc.choose(items))
 
     @bot.command(brief=command_dict['search_img']['brief'], description=command_dict['search_img']['desc'])
-    async def search_img(ctx, *, search: str = commands.parameter(default="default", description="picture to be searched")):
+    async def search_img(ctx, *, search: str = "default"):
         await ctx.send(bc.search_img(search))
 
     @bot.command(brief=command_dict['askai']['brief'], description=command_dict['askai']['desc'])
-    async def askai(ctx, *, prompt: str = commands.parameter(default="hello", description="prompt to generate text")):
+    async def askai(ctx, *, prompt: str = "hello"):
         await ctx.send(bc.askai(prompt))
 
     @bot.command(brief=command_dict['create']['brief'], description=command_dict['create']['desc'])
-    async def create(ctx, *, prompt: str = commands.parameter(default="hello", description="prompt to generate image")):
+    async def create(ctx, *, prompt: str = "hello"):
         await ctx.send(bc.create(prompt))
-
-
 
     bot.run(get_discord_bot_token())
