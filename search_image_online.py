@@ -17,20 +17,20 @@ def get_google_img(query):
 
     numberof_img = len(all_images)
     if numberof_img == 0:
-        return Constants.constant_url_default_image
+        return constants.constant_url_default_image
     img_idx = random.randrange(numberof_img)
     selected_img = all_images[img_idx]
     image_src = json.loads(selected_img['m'])['murl']
 
     if not image_src:
-        return Constants.constant_url_default_image
+        return constants.constant_url_default_image
 
     return image_src
 
 
 def search_online_image(argument):
     if not argument:
-        image = Constants.constant_url_default_image
+        image = constants.constant_url_default_image
     else:
         image = get_google_img(''.join(argument))
 
